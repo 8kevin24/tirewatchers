@@ -147,7 +147,7 @@ map.on('load', async () => {
     map.on('move', updatePositions);     // Update during map movement
     map.on('zoom', updatePositions);     // Update during zooming
     map.on('resize', updatePositions);   // Update on window resize
-    map.on('moveend', updatePositions)
+    map.on('moveend', updatePositions);
 
     const timeSlider = document.getElementById('time-slider');
     const selectedTime = document.getElementById('selected-time');
