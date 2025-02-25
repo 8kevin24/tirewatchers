@@ -7,5 +7,116 @@ body {
     box-sizing: border-box;
     margin: auto;
     padding: 1em;
-  }
-  
+}
+html, body {
+  margin: 0;
+  padding: 5;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;     /* Center vertically */
+}
+    
+#map {
+  width: 100%;    /* Adjust width to your desired size */
+  height: 100%;   /* Adjust height to your desired size */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for effect */
+  border-radius: 8px; /* Optional: rounded corners */
+}
+#map svg {
+  /* background: yellow; */
+  opacity: 50%;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+svg circle {
+  fill: steelblue;      /* Fill color */
+  fill-opacity: 0.6;    /* Makes circles more transparent */
+  stroke: white;        /* Border color */
+  stroke-width: 1px;    /* Border thickness */
+  pointer-events: auto;
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+  --color: color-mix(in oklch,
+  var(--color-departures) calc(100% * var(--departure-ratio)),
+  var(--color-arrivals));
+  fill: var(--color);
+
+
+}
+header {
+  display: flex;
+  gap: 40em;
+  align-items: baseline;
+  margin-bottom: 1em;
+}
+
+
+label {
+  margin-left: auto; /* Pushes label to the right */
+}
+
+time, em {
+  display: block; /* Ensures they appear on separate lines */
+}
+
+em {
+  color: gray;
+  font-style: italic;
+}
+
+/* Legend container styles */
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 1.5em; /* Larger gap between legend items */
+  margin-block: 1em;
+  padding: 0.5em 1em;
+  background: white;
+  border-radius: 8px; /* Keep rounded corners */
+  box-shadow: none; /* Remove shadow */
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+/* "Legend:" label */
+.legend-label {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Legend items (flex container) */
+.legend > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5em; /* Smaller gap for proximity effect */
+}
+
+/* Circular swatches using ::before */
+.legend > div::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-radius: 50%; /* Makes it circular */
+  background-color: var(--color); /* Dynamic color */
+  flex-shrink: 0; /* Prevents shrinking */
+}
+
+/* Define colors dynamically */
+.legend > div {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+
+  /* Default ratio */
+  --departure-ratio: var(--departure-ratio, 0.5);
+
+  /* Color mix */
+  --color: color-mix(in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+  );
+}
